@@ -1,6 +1,8 @@
 import 'recipient.dart';
 import 'attachment.dart';
+import 'package:filcnaplo_uwuifier/src/filcnaplo_uwuify_base.dart';
 
+Uwuifier uwuifier = Uwuifier();
 class Message {
   Map? json;
   int id;
@@ -60,8 +62,8 @@ class Message {
       seen: json["isElolvasva"] ?? false,
       deleted: json["isToroltElem"] ?? false,
       date: message["kuldesDatum"] != null ? DateTime.parse(message["kuldesDatum"]).toLocal() : DateTime(0),
-      author: (message["feladoNev"] ?? "").trim(),
-      content: message["szoveg"].replaceAll("\r", "") ?? "",
+      author: uwuifier.uwuifySentence((message["feladoNev"] ?? "").trim()).toString(),
+      content: uwuifier.uwuifySentence(message["szoveg"].replaceAll("\r", "") ?? "").toString(),
       subject: message["targy"] ?? "",
       type: type,
       recipients: (message["cimzettLista"] as List).cast<Map>().map((Map recipient) => Recipient.fromJson(recipient)).toList(),

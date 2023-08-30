@@ -14,7 +14,7 @@ extension ScreensLocalization on String {
           "home": "Kezdőlap",
           "grades": "Jegyek",
           "timetable": "Órarend",
-          "messages": "Üzenetek",
+          "messages": "Üzasdenetek",
           "absences": "Hiányok",
         },
         "de_de": {

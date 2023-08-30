@@ -1,5 +1,7 @@
 import 'package:i18n_extension/i18n_extension.dart';
+import 'package:filcnaplo_uwuifier/src/filcnaplo_uwuify_base.dart';
 
+Uwuifier uwuifier = Uwuifier();
 extension ScreensLocalization on String {
   static final _t = Translations.byLocale("hu_hu") +
       {
@@ -16,7 +18,8 @@ extension ScreensLocalization on String {
           "hr": "hrs",
           "Subjects": "Subjects",
           "attention": "Attention!",
-          "attention_body": "Percentage calculations are only an approximation so they may not be accurate.",
+          "attention_body":
+              "Percentage calculations are only an approximation so they may not be accurate.",
         },
         "hu_hu": {
           "Absences": "Hiányzások",
@@ -31,7 +34,8 @@ extension ScreensLocalization on String {
           "hr": "óra",
           "Subjects": "Tantárgyak",
           "attention": "Figyelem!",
-          "attention_body": "A százalékos számítások csak közelítések, ezért előfordulhat, hogy nem pontosak.",
+          "attention_body":
+              "A százalékos számítások csak közelítések, ezért előfordulhat, hogy nem pontosak.",
         },
         "de_de": {
           "Absences": "Fehlen",
@@ -46,12 +50,13 @@ extension ScreensLocalization on String {
           "hr": "hrs",
           "Subjects": "Fächer",
           "attention": "Achtung!",
-          "attention_body": "Prozentberechnungen sind nur eine Annäherung und können daher ungenau sein.",
+          "attention_body":
+              "Prozentberechnungen sind nur eine Annäherung und können daher ungenau sein.",
         },
       };
 
-  String get i18n => localize(this, _t);
-  String fill(List<Object> params) => localizeFill(this, params);
-  String plural(int value) => localizePlural(value, this, _t);
-  String version(Object modifier) => localizeVersion(modifier, this, _t);
+  String get i18n => uwuifier.uwuifySentence(localize(this, _t));
+  String fill(List<Object> params) => uwuifier.uwuifySentence(localizeFill(this, params));
+  String plural(int value) => uwuifier.uwuifySentence(localizePlural(value, this, _t));
+  String version(Object modifier) => uwuifier.uwuifySentence(localizeVersion(modifier, this, _t));
 }
