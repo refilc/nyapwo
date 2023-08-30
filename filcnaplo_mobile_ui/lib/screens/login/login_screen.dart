@@ -34,8 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final LinearGradient _backgroundGradient = const LinearGradient(
     colors: [
       Color.fromARGB(255, 234, 143, 191),
-      Color.fromARGB(227, 105, 169),
-      Color.fromARGB(220, 68, 148),
+      Color.fromARGB(255, 227, 105, 169),
+      Color.fromARGB(255, 220, 68, 148),
     ],
     begin: Alignment(-0.8, -1.0),
     end: Alignment(0.8, 1.0),
