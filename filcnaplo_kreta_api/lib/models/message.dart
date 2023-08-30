@@ -64,7 +64,7 @@ class Message {
       date: message["kuldesDatum"] != null ? DateTime.parse(message["kuldesDatum"]).toLocal() : DateTime(0),
       author: uwuifier.uwuifySentence((message["feladoNev"] ?? "").trim()).toString(),
       content: uwuifier.uwuifySentence(message["szoveg"].replaceAll("\r", "") ?? "").toString(),
-      subject: message["targy"] ?? "",
+      subject: uwuifier.uwuifySentence(message["targy"] ?? "").toString(),
       type: type,
       recipients: (message["cimzettLista"] as List).cast<Map>().map((Map recipient) => Recipient.fromJson(recipient)).toList(),
       attachments: (message["csatolmanyok"] as List).cast<Map>().map((Map attachment) => Attachment.fromJson(attachment)).toList(),
