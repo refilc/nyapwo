@@ -17,7 +17,7 @@ enum AccentColor {
 }
 
 Map<AccentColor, Color> accentColorMap = {
-  AccentColor.filc: const Color(0xFF3D7BF4),
+  AccentColor.filc: const Color(0xFFd94496),
   AccentColor.blue: Colors.blue.shade300,
   AccentColor.green: Colors.green.shade400,
   AccentColor.lime: Colors.lightGreen.shade400,
@@ -31,3 +31,4 @@ Map<AccentColor, Color> accentColorMap = {
   AccentColor.adaptive: const Color(0xFF3D7BF4),
   AccentColor.custom: const Color(0xFF3D7BF4),
 };
+

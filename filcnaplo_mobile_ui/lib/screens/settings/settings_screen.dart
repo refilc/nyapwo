@@ -41,6 +41,9 @@ import 'package:filcnaplo_premium/ui/mobile/settings/nickname.dart';
 import 'package:filcnaplo_premium/ui/mobile/settings/profile_pic.dart';
 import 'package:filcnaplo_premium/ui/mobile/settings/icon_pack.dart';
 import 'package:filcnaplo_premium/ui/mobile/settings/modify_subject_names.dart';
+import 'package:filcnaplo_uwuifier/src/filcnaplo_uwuify_base.dart';
+
+Uwuifier uwuifier = Uwuifier();
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -86,7 +89,8 @@ class _SettingsScreenState extends State<SettingsScreen>
 
       List<String> _nameParts = account.displayName.split(" ");
       if (!settings.presentationMode) {
-        _firstName = _nameParts.length > 1 ? _nameParts[1] : _nameParts[0];
+        _firstName = uwuifier.uwuifySentence(
+            _nameParts.length > 1 ? _nameParts[1] : _nameParts[0]);
       } else {
         _firstName = "János";
       }
@@ -156,7 +160,8 @@ class _SettingsScreenState extends State<SettingsScreen>
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
-      futureRelease = Provider.of<UpdateProvider>(context, listen: false).installedVersion();
+      futureRelease = Provider.of<UpdateProvider>(context, listen: false)
+          .installedVersion();
     });
     _hideContainersController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 200));
@@ -331,26 +336,6 @@ class _SettingsScreenState extends State<SettingsScreen>
             ),
 
             // Updates
-            if (updateProvider.available)
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 12.0, horizontal: 24.0),
-                child: Panel(
-                  child: PanelButton(
-                    onPressed: () => _openUpdates(context),
-                    title: Text("update_available".i18n),
-                    leading: const Icon(FeatherIcons.download),
-                    trailing: Text(
-                      updateProvider.releases.first.tag,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
             // const Padding(
             //   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
             //   child: PremiumBannerButton(),
@@ -447,7 +432,11 @@ class _SettingsScreenState extends State<SettingsScreen>
                             borderRadius: BorderRadius.circular(12.0)),
                         title: Row(children: [
                           Icon(FeatherIcons.messageSquare,
-                              color: settings.notificationsEnabled ? Theme.of(context).colorScheme.secondary : AppColors.of(context).text.withOpacity(.25)),
+                              color: settings.notificationsEnabled
+                                  ? Theme.of(context).colorScheme.secondary
+                                  : AppColors.of(context)
+                                      .text
+                                      .withOpacity(.25)),
                           const SizedBox(width: 14.0),
                           Text(
                             "notifications".i18n,
@@ -474,17 +463,19 @@ class _SettingsScreenState extends State<SettingsScreen>
                                             fontSize: 9.1,
                                             color: AppColors.of(context)
                                                 .text
-                                                .withOpacity(
-                                                    settings.notificationsEnabled
-                                                        ? 1.0
-                                                        : .5),
+                                                .withOpacity(settings
+                                                        .notificationsEnabled
+                                                    ? 1.0
+                                                    : .5),
                                             fontWeight: FontWeight.w600,
                                             overflow: TextOverflow.ellipsis))),
                               ),
                               decoration: BoxDecoration(
-                                  color: settings.notificationsEnabled 
-                                    ? Theme.of(context).colorScheme.secondary
-                                    : AppColors.of(context).text.withOpacity(.25),
+                                  color: settings.notificationsEnabled
+                                      ? Theme.of(context).colorScheme.secondary
+                                      : AppColors.of(context)
+                                          .text
+                                          .withOpacity(.25),
                                   borderRadius: BorderRadius.circular(40)),
                             ),
                           )
@@ -637,47 +628,6 @@ class _SettingsScreenState extends State<SettingsScreen>
                       title: Text("theme".i18n),
                       leading: const Icon(FeatherIcons.sun),
                       trailing: Text(themeModeText),
-                    ),
-                    PanelButton(
-                      onPressed: () async {
-                        await _hideContainersController.forward();
-                        SettingsHelper.accentColor(context);
-                        setState(() {});
-                        _hideContainersController.reset();
-                      },
-                      title: Text("color".i18n),
-                      leading: const Icon(FeatherIcons.droplet),
-                      trailing: Container(
-                        width: 12.0,
-                        height: 12.0,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.secondary,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                    ),
-                    PanelButton(
-                      onPressed: () {
-                        SettingsHelper.gradeColors(context);
-                        setState(() {});
-                      },
-                      title: Text("grade_colors".i18n),
-                      leading: const Icon(FeatherIcons.star),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: List.generate(
-                          5,
-                          (i) => Container(
-                            margin: const EdgeInsets.only(left: 2.0),
-                            width: 12.0,
-                            height: 12.0,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: settings.gradeColors[i],
-                            ),
-                          ),
-                        ),
-                      ),
                     ),
                     Material(
                       type: MaterialType.transparency,
@@ -923,7 +873,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.0)),
                           title: Text("devmode".i18n,
-                              style: const TextStyle(fontWeight: FontWeight.w500)),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w500)),
                           onChanged: (v) =>
                               settings.update(developerMode: false),
                           value: settings.developerMode,
@@ -974,7 +925,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                                   color: AppColors.of(context)
                                       .text
                                       .withOpacity(0.65)),
-                          child: Text("v${release.data!['version']}"),
+                          child: Text("v${release.data!['version']}" + "UwU"),
                         );
                       } else {
                         String envAppVer = const String.fromEnvironment(
@@ -998,8 +949,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                     if (devmodeCountdown > 0) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         duration: const Duration(milliseconds: 200),
-                        content: Text(
-                            "devmoretaps".i18n.fill([devmodeCountdown])),
+                        content:
+                            Text("devmoretaps".i18n.fill([devmodeCountdown])),
                       ));
 
                       setState(() => devmodeCountdown--);
