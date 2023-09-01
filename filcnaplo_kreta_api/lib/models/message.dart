@@ -56,15 +56,15 @@ class Message {
       if (json["isToroltElem"] == true) type = MessageType.trash;
     }
 
-    return Message(
+     return Message(
       id: json["azonosito"],
       messageId: message["azonosito"],
       seen: json["isElolvasva"] ?? false,
       deleted: json["isToroltElem"] ?? false,
       date: message["kuldesDatum"] != null ? DateTime.parse(message["kuldesDatum"]).toLocal() : DateTime(0),
-      author: uwuifier.uwuifySentence((message["feladoNev"] ?? "").trim()).toString(),
-      content: uwuifier.uwuifySentence(message["szoveg"].replaceAll("\r", "") ?? "").toString(),
-      subject: uwuifier.uwuifySentence(message["targy"] ?? "").toString(),
+      author: (message["feladoNev"] ?? "").trim(),
+      content: message["szoveg"].replaceAll("\r", "") ?? "",
+      subject: message["targy"] ?? "",
       type: type,
       recipients: (message["cimzettLista"] as List).cast<Map>().map((Map recipient) => Recipient.fromJson(recipient)).toList(),
       attachments: (message["csatolmanyok"] as List).cast<Map>().map((Map attachment) => Attachment.fromJson(attachment)).toList(),
