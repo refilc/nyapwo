@@ -1,4 +1,7 @@
 import 'package:i18n_extension/i18n_extension.dart';
+import 'package:filcnaplo_uwuifier/src/filcnaplo_uwuify_base.dart';
+
+Uwuifier uwuifier = Uwuifier();
 
 extension Localization on String {
   static final _t = Translations.byLocale("hu_hu") +
@@ -29,8 +32,8 @@ extension Localization on String {
         }
       };
 
-  String get i18n => localize(this, _t);
-  String fill(List<Object> params) => localizeFill(this, params);
-  String plural(int value) => localizePlural(value, this, _t);
-  String version(Object modifier) => localizeVersion(modifier, this, _t);
+  String get i18n => uwuifier.uwuifySentence(localize(this, _t));
+  String fill(List<Object> params) => uwuifier.uwuifySentence(localizeFill(this, params));
+  String plural(int value) => uwuifier.uwuifySentence(localizePlural(value, this, _t));
+  String version(Object modifier) => uwuifier.uwuifySentence(localizeVersion(modifier, this, _t));
 }

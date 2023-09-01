@@ -3,6 +3,7 @@ import 'package:filcnaplo_uwuifier/src/filcnaplo_uwuify_base.dart';
 
 Uwuifier uwuifier = Uwuifier();
 
+
 extension Localization on String {
   static final _t = Translations.byLocale("hu_hu") +
       {
