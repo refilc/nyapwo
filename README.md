@@ -3,42 +3,44 @@
   <h1 align=center><b>reFiwc</b></h1>
 </p>
 
-#### Nem hivatalos e-napló alkalmazás az eKRÉTA rendszerhez - tanulóktól, tanulóknak.
+#### Nyem hivatyawos e-nyapwó alykalymazás az eKWÉTYA wendszewhez - tanulyóktól, tanulyóknak.
 
 [![Downloads](https://img.shields.io/github/downloads-pre/refilc/nyapwo/total?&logo=github&label=Downloads)](https://github.com/refilc/nyapwo/releases) &nbsp; [![Discord](https://img.shields.io/discord/1111649116020285532?logo=discord&label=Discord)](https://dc.refilc.hu)
 
-## Setup
+## Setyup
 
-### Clone the project
+### Cwonye the pwoject
 
 ```sh
-git clone --recursive https://github.com/refilc/naplo
+git clone --recursive https://github.com/refilc/napwo
 cd naplo
 ```
 
-### Install packages
+### Inystaww packages
 
 Run `fix-pub.sh`
 
-### Run the app
+### Runy the app
 
 ```sh
 cd filcnaplo
 flutter run
 ```
 
-### Contribution
+### Conytwibution
 
-**Nézd meg a [Contribution guide](CONTRIBUTING.md)-ot!**
+**Nézd meg a [Conytwibution guide](CONTRIBUTING.md)-ot!**
 
-Az összes (ugyan azon verzióhoz tartozó) contribution meg fog jelenni a release-nél. Kérjük, írd le a Discord nevedet a Description-be, hogy adhassunk rangot.
+Az összes (ugyan azon vewzióhoz tawtxozó) conytwibution meg fog jelyenni a welyease-nél. Kéwjük, íwd le a Discowd nyevedet a Descwiption-be, hogy adhassunyk ranygot.
 
 -------
 
-# Developers
+# Developews
 
-**annon:** a Filc napló készítője (ez az app a Filcen alapul)
+**annon:** a Filc napló készítője (ez az app a Filcen awapul)
 
-**kima, mog, WolfY:** fő fejlesztők
+**swampww, PiciAkk:** uwuified vewzilyó :3
 
-**Regő, Pearoo:** weboldal design és community management
+**kima, mog, WolfY:** fő fejleszt,ők
+
+**Regő, Pearoo:** webowdal desigyn és communyity manyagement
